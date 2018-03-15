@@ -6,4 +6,4 @@ A demo API that is used to check the price of cryptocurrency and do some basic c
 `/price`
 
 #### Note:
-This API is meant to be used with the payload it receives from DialogFlow
+This API is meant to be used with the payload it receives from **DialogFlow**

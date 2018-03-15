@@ -1,0 +1,31 @@
+{
+  "name": "chatbot-coin-api-demo",
+  "version": "1.0.0",
+  "description": "A fulfillment API for a chatbot",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shanereddy/chatbot-coin-api-demo.git"
+  },
+  "author": "shane2807@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shanereddy/chatbot-coin-api-demo/issues"
+  },
+  "homepage": "https://github.com/shanereddy/chatbot-coin-api-demo#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {
+    "eslint": "^4.18.2",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-prettier": "^2.6.0",
+    "prettier": "1.11.1"
+  }
+}
