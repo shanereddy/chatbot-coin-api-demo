@@ -11,7 +11,7 @@ app.use(bodyParser.json())
 
 app.use('/price', function(req, res) {
   coinbaseApi
-    .priceOf()
+    .priceOf('aerm')
     .then(function(response) {
       res.json(response)
     })
