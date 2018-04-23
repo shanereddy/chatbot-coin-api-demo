@@ -3,7 +3,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const coinbaseApi = require('./coinbaseApi')
-const request = require('superagent')
 
 const app = express()
 
