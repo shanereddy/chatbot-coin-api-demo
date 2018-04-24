@@ -3,23 +3,26 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const coinbaseApi = require('./coinbaseApi')
+const chalk = require('chalk')
 
 const app = express()
-
 app.use(bodyParser.json())
 
 app.use('/price', function(req, res, next) {
   var responseText = ''
   const intentName = req.body.result.metadata.intentName
-  console.log('intentName: ' + intentName)
+
+  console.log(chalk.black.bgGreen('Received request for Intent: ' + intentName))
+  // console.log('intentName: ' + intentName)
 
   if (intentName === 'crypto-price') {
-    console.log('We are in the crypto-price intent')
+    // console.log('We are in the crypto-price intent')
     const coinName = req.body.result.parameters['cryptocurrency-name']
     coinbaseApi
       .priceOf(coinName)
       .then(function(response) {
-        console.log('coinbase response usd: ' + response.coin.usd)
+        // console.log('coinbase response usd: ' + response.coin.usd)
+        console.log(chalk.black.bgYellow('USD: ' + response.coin.usd))
         responseText = 'The price of your coin is $' + response.coin.usd
         res.json({ speech: responseText, displayText: responseText })
       })
@@ -28,13 +31,14 @@ app.use('/price', function(req, res, next) {
         res.json({ speech: responseText, displayText: responseText })
       })
   } else if (intentName === 'conversion.context') {
-    console.log('We are in the conversion.context intent')
+    // console.log('We are in the conversion.context intent')
     const fromCoin = req.body.result.parameters['current-cryptocurrency-name']
     const toCoin = req.body.result.parameters['cryptocurrency-name']
     coinbaseApi
       .exchangeRate(fromCoin, toCoin)
       .then(function(response) {
-        responseText = fromCoin + ' is ' + response.coin.exchange_rate.toFixed(10) + ' ' + toCoin
+        console.log(chalk.black.bgYellow('Exchange rate: ' + response.coin.exchange_rate.toFixed(10)))
+        responseText = fromCoin + ' is worth ' + response.coin.exchange_rate.toFixed(10) + ' ' + toCoin
         res.json({ speech: responseText, displayText: responseText })
       })
       .catch(function() {

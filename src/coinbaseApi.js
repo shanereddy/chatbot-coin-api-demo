@@ -1,9 +1,11 @@
 'use strict'
 const request = require('superagent')
+const chalk = require('chalk')
 
 const API_URI = 'https://coinbin.org/'
 
 function priceOf(coinName) {
+  console.log(chalk.black.bgBlue('Checking price of ' + coinName))
   return new Promise(function(resolve, reject) {
     const coinIdentifier = lookupCoinName(coinName)
 
@@ -26,6 +28,7 @@ function exchangeRate(fromCoin, toCoin) {
   return new Promise(function(resolve, reject) {
     const fromCoinIdentifier = lookupCoinName(fromCoin)
     const toCoinIdentifier = lookupCoinName(toCoin)
+    console.log(chalk.black.bgBlue('Doing conversion from ' + fromCoin + ' to ' + toCoin))
 
     if (!fromCoinIdentifier) {
       reject(fromCoin + ' does not exist')
@@ -35,7 +38,7 @@ function exchangeRate(fromCoin, toCoin) {
       reject(toCoin + ' does not exist')
     }
 
-    console.log('url:', API_URI + fromCoinIdentifier + '/to/' + toCoinIdentifier)
+    // console.log('url:', API_URI + fromCoinIdentifier + '/to/' + toCoinIdentifier)
     request
       .get(API_URI + fromCoinIdentifier + '/to/' + toCoinIdentifier)
       .then(function(res) {
@@ -52,7 +55,7 @@ function lookupCoinName(coinName) {
   const obj = JSON.parse(fs.readFileSync('./lookups/coins.json', 'utf8'))
 
   if (obj[coinName]) {
-    console.log('coin: ' + obj[coinName])
+    // console.log('coin: ' + obj[coinName])
     return obj[coinName]
   }
 }

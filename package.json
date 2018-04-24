@@ -19,6 +19,7 @@
   "homepage": "https://github.com/shanereddy/chatbot-coin-api-demo#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "chalk": "^2.4.0",
     "express": "^4.16.3",
     "superagent": "^3.8.2"
   },
